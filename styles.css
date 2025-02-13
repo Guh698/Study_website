@@ -1,0 +1,611 @@
+/* general */
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Preloader */
+#preloader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Spinner animado */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+    url(imgs/bgimg.jpg);
+  background-position: center;
+  background-size: cover;
+  opacity: 0.98;
+  z-index: -1;
+}
+
+/* nav */
+
+.nav-container {
+  width: 100%;
+  height: 60px;
+  padding: 0 2em;
+  position: relative;
+  box-sizing: border-box;
+}
+
+nav {
+  position: relative;
+  display: flex;
+  justify-content: start;
+}
+
+.navitems {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding-top: 1.5%;
+  margin-left: 70%;
+}
+
+.navitems p {
+  color: #fff;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.navitems p:hover {
+  color: #9999f7;
+}
+
+.nav-item:hover p,
+.nav-item.active p {
+  color: #9999f7;
+}
+
+.nav-indicator {
+  position: absolute;
+  width: 50px;
+  height: 5px;
+  margin-top: 7%;
+  background-color: #9999f7;
+  transition: transform 0.1s ease-in-out, width 0.2s ease-in-out;
+}
+
+nav h1 {
+  position: absolute;
+  font-size: 24px;
+  color: #fff;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+/* conteúdo */
+
+main {
+  height: 100vh;
+}
+
+/* categories */
+
+.home {
+  position: relative;
+  transform: translateX(100vw) scale(0.9);
+  display: none;
+}
+
+.home.show {
+  animation: animacao_default 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  display: block;
+}
+
+.subjects {
+  position: relative;
+  transform: translateX(100vw) scale(0.9);
+  display: none;
+  animation: animacao_default 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.subjects.show {
+  opacity: 1;
+  display: block;
+}
+
+.pomodoro {
+  display: none;
+}
+
+.about {
+  display: none;
+}
+
+/* animations */
+
+@keyframes animacao_default {
+  0% {
+    transform: translateX(100vw) scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-20px) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* home */
+
+#home {
+  width: 100%;
+  height: 100%;
+}
+
+.home-container {
+  position: relative;
+  margin-left: 8%;
+}
+
+#home .banner {
+  margin-right: 50px;
+  background-image: url(imgs/book.webp);
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  height: 470px;
+  width: 360px;
+  position: absolute;
+  margin-top: 60px;
+  left: 10%;
+}
+
+#home .descricao {
+  position: absolute;
+  left: 40%;
+  margin-top: 170px;
+  width: 600px;
+}
+
+#home .descricao h2 {
+  font-size: 33px;
+  color: #fff;
+}
+
+#home .descricao .site-name {
+  color: #9999f7;
+  font-size: 36px;
+}
+
+#home .descricao p {
+  color: #fff;
+}
+
+/*subjects*/
+
+#subjects {
+  height: 100%;
+  width: 100%;
+}
+
+.subjects-container {
+  position: relative;
+  height: 100%;
+}
+
+.subjects-container h2 {
+  color: #fff;
+  text-align: center;
+  padding-top: 50px;
+  margin-bottom: 150px;
+}
+
+.subjects-row {
+  position: absolute;
+  width: 100%;
+  height: 350px;
+  top: 30%;
+  display: flex;
+  overflow-x: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+.subjects-row::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.subjects-row ul {
+  display: flex;
+  gap: 50px;
+  list-style: none;
+}
+
+.subjects-row li {
+  background-color: #fff;
+  width: 350px;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.box-descricao {
+  cursor: default;
+}
+.box-descricao h1 {
+  margin-left: 5px;
+}
+.box-descricao p {
+  text-align: center;
+}
+
+/*subjects imgs*/
+
+.math-img {
+  height: 80%;
+  width: 100%;
+  opacity: 0.9;
+  background-image: url(imgs/math.jpg);
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.physics-img {
+  height: 80%;
+  width: 100%;
+  opacity: 0.9;
+  background-image: url(imgs/physics.jpg);
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.sociology-img {
+  height: 80%;
+  width: 100%;
+  opacity: 0.9;
+  background-image: url(imgs/sociology.jpg);
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.History-img {
+  height: 80%;
+  width: 100%;
+  opacity: 0.9;
+  background-image: url(imgs/history.jpg);
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.Geography-img {
+  height: 80%;
+  width: 100%;
+  opacity: 0.9;
+  background-image: url(imgs/geography.jpg);
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.Portuguese-img {
+  height: 80%;
+  width: 100%;
+  opacity: 0.9;
+  background-image: url(imgs/portuguese.jpg);
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.Essay-img {
+  height: 80%;
+  width: 100%;
+  opacity: 0.9;
+  background-image: url(imgs/essay.jpg);
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.Chemical-img {
+  height: 80%;
+  width: 100%;
+  opacity: 0.9;
+  background-image: url(imgs/chemical.jpg);
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.Biology-img {
+  height: 80%;
+  width: 100%;
+  opacity: 0.9;
+  background-image: url(imgs/biology.jpg);
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* footer */
+
+footer {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  bottom: -15px;
+  display: flex;
+  padding-left: 50px;
+  gap: 50px;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+footer a:hover {
+  color: #9999f7;
+}
+
+/* mobile */
+@media (max-width: 500px) {
+  /* general */
+  * {
+    overflow: hidden;
+  }
+
+  /* nav */
+
+  nav {
+    justify-content: center;
+  }
+
+  .nav-container {
+    height: 75px;
+    width: 105%;
+  }
+
+  nav h1 {
+    font-size: 20px;
+  }
+
+  .navitems {
+    gap: 20px;
+    font-size: 16px;
+    padding-top: 15%;
+    margin: 0;
+  }
+
+  .nav-indicator {
+    height: 5px;
+    margin-top: 8%;
+  }
+
+  /* home */
+
+  .home {
+    position: relative;
+    transform: translateX(100) scale(0.9);
+    display: none;
+  }
+
+  .home.show {
+    animation: animacao_default 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    display: block;
+  }
+
+  #home {
+    width: 100%;
+    height: 100%;
+  }
+
+  .home-container {
+    position: relative;
+    margin-left: 8%;
+  }
+
+  #home .banner {
+    margin-right: 50px;
+    background-image: url(imgs/book.webp);
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    height: 470px;
+    width: 360px;
+    position: absolute;
+    margin-top: 60px;
+    left: 10%;
+  }
+
+  #home .descricao {
+    position: absolute;
+    left: 40%;
+    margin-top: 170px;
+    width: 600px;
+  }
+
+  #home .descricao h2 {
+    font-size: 33px;
+    color: #fff;
+  }
+
+  #home .descricao .site-name {
+    color: #9999f7;
+    font-size: 36px;
+  }
+
+  #home .descricao p {
+    color: #fff;
+  }
+
+  /* subjects */
+
+  .subjects {
+    position: relative;
+    transform: translateX(100vw) scale(0.9);
+    display: none;
+    animation: animacao_default 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .subjects.show {
+    opacity: 1;
+    display: block;
+  }
+
+  #subjects {
+    height: 100%;
+    width: 100%;
+  }
+
+  .subjects-container {
+    position: relative;
+    display: flex;
+    height: 100%;
+    overflow-y: auto;
+    justify-content: center;
+  }
+
+  .subjects-container h2 {
+    color: #fff;
+    text-align: center;
+    padding-top: 50px;
+    margin-bottom: 0px;
+  }
+
+  .subjects-row {
+    width: 100%;
+    height: 500%;
+    top: 15%;
+    display: flex;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .subjects-row ul {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-left: 6%;
+  }
+
+  .subjects-row li {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+  }
+
+  .math-img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .physics-img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .sociology-img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .History-img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .Geography-img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .Portuguese-img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .Essay-img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .Chemical-img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .Biology-img {
+    height: 300px;
+    width: 100%;
+  }
+}
